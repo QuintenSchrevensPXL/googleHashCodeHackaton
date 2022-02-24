@@ -10,12 +10,13 @@ class Contributor{
     }
 }
 class Project{
-    constructor(name, numberOfdDays, score, bestBefore, numberOfPeople){
+    constructor(name, numberOfdDays, score, bestBefore, numberOfPeople, requiredSkills){
         this.name = name;
         this.numberOfdDays = numberOfdDays;
         this.score = score;
         this.bestBefore = bestBefore;
         this.numberOfPeople = numberOfPeople;
+        this.requiredSkills = requiredSkills;
     }
 }
 
@@ -55,6 +56,30 @@ function readTextFile() {
             console.log(person)
             currentPerson++;
             currentSkill = 0;
+        }
+        let currentProject = 0
+        let currentProjectSkill = 0
+        while(numberOfProjects > currentProject){
+        
+            let projectName = dataArray[lineCounter].split(' ')[0];
+            let numberOfDays = dataArray[lineCounter].split(' ')[1];;
+            let score = dataArray[lineCounter].split(' ')[2];
+            let bestBefore = dataArray[lineCounter].split(' ')[3];
+            let numberOfPeople = dataArray[lineCounter].split(' ')[4];
+            lineCounter++;
+            let projectSkills = [];
+            while(numberOfPeople > currentProjectSkill){
+                console.log(dataArray[lineCounter].split(' '))
+                projectSkills.push(dataArray[lineCounter].split(' '))
+                currentProjectSkill++;
+                lineCounter++;
+            }
+            project = new Project(projectName,numberOfDays,score,bestBefore,numberOfPeople,projectSkills);
+            console.log(project);
+            console.log(project.requiredSkills)
+            currentProject++;
+            currentProjectSkill = 0;
+            
         }
         
     } catch (e) {
